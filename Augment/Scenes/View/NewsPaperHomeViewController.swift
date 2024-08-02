@@ -65,16 +65,39 @@ final class NewsPaperHomeViewController: UIViewController {
         return stackView
     }()
     
-    private let benefitsExpandableView: UIView = {
+    private lazy var benefitsExpandableView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapExpandBenefits)))
         return view
     }()
     
-    private let benefitsExpandable: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private var benefitsExpandableTitle: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.text = "What is \"News+\"?"
+        return label
+    }()
+    
+    private let benefitsExpandableImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: "chevron.down")
+        imageView.tintColor = .black
+        return imageView
+    }()
+    
+    private let benefitsExpandedStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.distribution = .fillEqually
+        stackView.isHidden = true
+        return stackView
     }()
     
     private lazy var subscribeButton: UIButton = {
@@ -99,6 +122,13 @@ final class NewsPaperHomeViewController: UIViewController {
     
     // MARK: - Properties
     private var viewModel: NewsPaperHomeViewModelProtocol
+    
+    private var isBenefitsExpanded: Bool = false {
+        didSet {
+            benefitsExpandedStackView.isHidden = !isBenefitsExpanded
+            benefitsExpandableImageView.image = isBenefitsExpanded ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.up")
+        }
+    }
     
     // MARK: - Initializers
     init(viewModel: NewsPaperHomeViewModelProtocol) {
@@ -131,11 +161,15 @@ final class NewsPaperHomeViewController: UIViewController {
 // MARK: - private extension
 private extension NewsPaperHomeViewController {
     func setupViewHierarchy() {
+        benefitsExpandableView.addSubview(benefitsExpandableTitle)
+        benefitsExpandableView.addSubview(benefitsExpandableImageView)
         contentView.addSubview(headerLogoImageView)
         contentView.addSubview(coverImageImageView)
         contentView.addSubview(subscribeTitleLabel)
         contentView.addSubview(subscribeSubtitleLabel)
         contentView.addSubview(offersStackView)
+        contentView.addSubview(benefitsExpandableView)
+        contentView.addSubview(benefitsExpandedStackView)
         contentView.addSubview(subscribeButton)
         contentView.addSubview(disclaimerLabel)
         scrollView.addSubview(contentView)
@@ -151,6 +185,10 @@ private extension NewsPaperHomeViewController {
         subscribeTitleLabelConstraints()
         subscribeSubtitleLabelConstraints()
         offersStackViewConstraints()
+        benefitsExpandableTitleConstraints()
+        benefitsExpandableImageConstraints()
+        benefitsExpandableViewConstraints()
+        benefitsExpandedStackViewConstraints()
         subscribeButtonConstraints()
         disclaimerLabelConstraints()
         activityIndicatorConstraints()
@@ -175,6 +213,16 @@ private extension NewsPaperHomeViewController {
         }
         alert.addAction(alertAction)
         self.present(alert, animated: true)
+    }
+    
+    func addBenefitsToBenefitsStackView(_ benefits: [String]) {
+        benefits.forEach { benefit in
+            let label = UILabel()
+            label.text = "- \(benefit)"
+            label.numberOfLines = 1
+            label.font = .systemFont(ofSize: 12, weight: .regular)
+            benefitsExpandedStackView.addArrangedSubview(label)
+        }
     }
     
     func startLoading() {
@@ -207,6 +255,7 @@ extension NewsPaperHomeViewController: NewsPaperHomeViewModelDelegate {
         )
         offersStackView.addArrangedSubview(secondPriceValue)
         disclaimerLabel.text = model.record.subscription.disclaimer
+        addBenefitsToBenefitsStackView(model.record.subscription.benefits)
     }
     
     func fetchFailed(withError errorInfo: (title: String, message: String)) {
@@ -280,6 +329,39 @@ private extension NewsPaperHomeViewController {
         ])
     }
     
+    func benefitsExpandableViewConstraints() {
+        NSLayoutConstraint.activate([
+            benefitsExpandableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 56),
+            benefitsExpandableView.topAnchor.constraint(equalTo: offersStackView.bottomAnchor, constant: 56),
+            benefitsExpandableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -56)
+        ])
+    }
+    
+    func benefitsExpandableTitleConstraints() {
+        NSLayoutConstraint.activate([
+            benefitsExpandableTitle.leadingAnchor.constraint(equalTo: benefitsExpandableView.leadingAnchor, constant: 4),
+            benefitsExpandableTitle.topAnchor.constraint(equalTo: benefitsExpandableView.topAnchor, constant: 4),
+            benefitsExpandableTitle.bottomAnchor.constraint(equalTo: benefitsExpandableView.bottomAnchor, constant: -4),
+        ])
+    }
+    
+    func benefitsExpandableImageConstraints() {
+        NSLayoutConstraint.activate([
+            benefitsExpandableImageView.leadingAnchor.constraint(greaterThanOrEqualTo: benefitsExpandableTitle.leadingAnchor, constant: 4),
+            benefitsExpandableImageView.topAnchor.constraint(equalTo: benefitsExpandableView.topAnchor, constant: 4),
+            benefitsExpandableImageView.trailingAnchor.constraint(equalTo: benefitsExpandableView.trailingAnchor, constant: -4),
+            benefitsExpandableImageView.bottomAnchor.constraint(equalTo: benefitsExpandableView.bottomAnchor, constant: -4),
+        ])
+    }
+    
+    func benefitsExpandedStackViewConstraints() {
+        NSLayoutConstraint.activate([
+            benefitsExpandedStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            benefitsExpandedStackView.topAnchor.constraint(equalTo: benefitsExpandableView.bottomAnchor, constant: 4),
+            benefitsExpandedStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
+        ])
+    }
+    
     func subscribeButtonConstraints() {
         NSLayoutConstraint.activate([
             subscribeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -311,5 +393,9 @@ private extension NewsPaperHomeViewController {
 private extension NewsPaperHomeViewController {
     func subscribeButtonClicked() {
         dump("Subscribe Button Clicked")
+    }
+    
+    func didTapExpandBenefits() {
+        self.isBenefitsExpanded = !isBenefitsExpanded
     }
 }
