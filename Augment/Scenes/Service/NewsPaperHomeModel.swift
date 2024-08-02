@@ -21,7 +21,7 @@ struct Subscription: Equatable, Decodable {
     let coverImage: String
     let subscribeTitle: String
     let subscribeSubtitle: String
-    let offers: [String: Offer]
+    let offers: Offers
     let benefits: [String]
     let disclaimer: String
     
@@ -34,6 +34,11 @@ struct Subscription: Equatable, Decodable {
         case benefits
         case disclaimer
     }
+}
+
+struct Offers: Equatable, Decodable {
+    let id0: Offer
+    let id1: Offer
 }
 
 struct Offer: Equatable, Decodable {

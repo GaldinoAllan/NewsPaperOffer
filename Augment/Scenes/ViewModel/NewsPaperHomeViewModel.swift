@@ -6,7 +6,7 @@ protocol NewsPaperHomeViewModelProtocol {
 }
 
 protocol NewsPaperHomeViewModelDelegate: AnyObject {
-    func newsPaperHomeDidLoad()
+    func newsPaperHomeDidLoad(with model: NewsPaperHomeModel)
     func fetchFailed(withError errorInfo: (title: String, message: String))
 }
 
@@ -44,7 +44,6 @@ class NewsPaperHomeViewModel: NewsPaperHomeViewModelProtocol {
 private extension NewsPaperHomeViewModel {
     func onLoadHome(model: NewsPaperHomeModel) {
         self.newsPaperHome = model
-        // TODO: Save to Core Data if differs from previous payload
-        delegate?.newsPaperHomeDidLoad()
+        delegate?.newsPaperHomeDidLoad(with: model)
     }
 }

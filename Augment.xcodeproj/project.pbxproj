@@ -24,6 +24,7 @@
 		9D592F0A2C5D3E5A00C4E2CC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D592F092C5D3E5A00C4E2CC /* CoreData.framework */; };
 		9D592F0E2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D592F0C2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodeld */; };
 		9D592F102C5D3FC000C4E2CC /* CoreDataValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592F0F2C5D3FC000C4E2CC /* CoreDataValues.swift */; };
+		9D592F122C5D558900C4E2CC /* PriceDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592F112C5D558900C4E2CC /* PriceDescriptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		9D592F092C5D3E5A00C4E2CC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9D592F0D2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsPaperHome.xcdatamodel; sourceTree = "<group>"; };
 		9D592F0F2C5D3FC000C4E2CC /* CoreDataValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataValues.swift; sourceTree = "<group>"; };
+		9D592F112C5D558900C4E2CC /* PriceDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceDescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				9D592F062C5D257200C4E2CC /* NewsPaperHomeViewController.swift */,
+				9D592F112C5D558900C4E2CC /* PriceDescriptionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				9D592EF52C5D1F7900C4E2CC /* NetworkErrors.swift in Sources */,
 				9D592F102C5D3FC000C4E2CC /* CoreDataValues.swift in Sources */,
 				9D592F022C5D22C500C4E2CC /* NewsPaperHomeViewModel.swift in Sources */,
+				9D592F122C5D558900C4E2CC /* PriceDescriptionView.swift in Sources */,
 				9D592EFC2C5D205700C4E2CC /* NewsPaperHomeService.swift in Sources */,
 				9D592EFF2C5D210100C4E2CC /* NewsPaperHomeAPI.swift in Sources */,
 			);

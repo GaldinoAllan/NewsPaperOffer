@@ -28,7 +28,7 @@ class NewsPaperHomeAPI {
             "Benefit statement 2",
             "Benefit statement 3"
           ],
-          "disclaimer": "* Does not extend to E-edition or 3rd party"
+          "disclaimer": "* Does not extend to E-edition or 3rd party Does not extend to E-edition or 3rd party Does not extend to E-edition or 3rd party"
         }
       },
       "metadata": {
