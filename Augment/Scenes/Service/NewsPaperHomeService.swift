@@ -14,8 +14,23 @@ final class NewsPaperHomeService: NewsPaperHomeServicing {
     }
     
     func getNewsPaperPlans(completionHandler: @escaping (Result<NewsPaperHomeModel, NetworkErrors>) -> Void) {
-        completionHandler(.success(.init(id: 1, name: "name")))
+        do {
+            let decoder = JSONDecoder()
+            let decodedMock = try decoder.decode(NewsPaperHomeModel.self, from: NewsPaperHomeAPI.modelMock!)
+            DispatchQueue.main.async {
+                completionHandler(.success(decodedMock))
+            }
+        } catch let error {
+            DispatchQueue.main.async {
+                completionHandler(.failure(.jsonDecoding(message: error.localizedDescription)))
+            }
+        }
         return
+        
+        
+        
+        
+        
         
         guard let apiUrl = URL(string: apiURLString) else {
             completionHandler(.failure(.invalidUrl))
@@ -43,7 +58,9 @@ final class NewsPaperHomeService: NewsPaperHomeServicing {
                     completionHandler(.success(decoded))
                 }
             } catch let error {
-                completionHandler(.failure(.jsonDecoding(message: error.localizedDescription)))
+                DispatchQueue.main.async {
+                    completionHandler(.failure(.jsonDecoding(message: error.localizedDescription)))
+                }
             }
         }
     }
