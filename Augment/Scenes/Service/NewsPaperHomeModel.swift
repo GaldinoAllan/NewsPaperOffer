@@ -1,12 +1,12 @@
 import Foundation
 
-struct NewsPaperHomeModel: Codable {
+struct NewsPaperHomeModel: Equatable, Decodable {
     let id: String
     let record: Record
     let metadata: Metadata
 }
 
-struct Record: Codable {
+struct Record: Equatable, Decodable {
     let headerLogo: String
     let subscription: Subscription
     
@@ -16,7 +16,7 @@ struct Record: Codable {
     }
 }
 
-struct Subscription: Codable {
+struct Subscription: Equatable, Decodable {
     let offerPageStyle: String
     let coverImage: String
     let subscribeTitle: String
@@ -36,12 +36,12 @@ struct Subscription: Codable {
     }
 }
 
-struct Offer: Codable {
+struct Offer: Equatable, Decodable {
     let price: Double
     let description: String
 }
 
-struct Metadata: Codable {
+struct Metadata: Equatable, Decodable {
     let name: String
     let readCountRemaining: Int
     let timeToExpire: Int

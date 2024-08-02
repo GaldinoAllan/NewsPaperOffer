@@ -21,6 +21,9 @@
 		9D592F022C5D22C500C4E2CC /* NewsPaperHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592F012C5D22C500C4E2CC /* NewsPaperHomeViewModel.swift */; };
 		9D592F042C5D24CD00C4E2CC /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592F032C5D24CD00C4E2CC /* UIImageView+Extension.swift */; };
 		9D592F072C5D257200C4E2CC /* NewsPaperHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592F062C5D257200C4E2CC /* NewsPaperHomeViewController.swift */; };
+		9D592F0A2C5D3E5A00C4E2CC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D592F092C5D3E5A00C4E2CC /* CoreData.framework */; };
+		9D592F0E2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D592F0C2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodeld */; };
+		9D592F102C5D3FC000C4E2CC /* CoreDataValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592F0F2C5D3FC000C4E2CC /* CoreDataValues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		9D592F012C5D22C500C4E2CC /* NewsPaperHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPaperHomeViewModel.swift; sourceTree = "<group>"; };
 		9D592F032C5D24CD00C4E2CC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		9D592F062C5D257200C4E2CC /* NewsPaperHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPaperHomeViewController.swift; sourceTree = "<group>"; };
+		9D592F092C5D3E5A00C4E2CC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9D592F0D2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsPaperHome.xcdatamodel; sourceTree = "<group>"; };
+		9D592F0F2C5D3FC000C4E2CC /* CoreDataValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataValues.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D592F0A2C5D3E5A00C4E2CC /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +65,7 @@
 			children = (
 				9D592ED42C5C23BE00C4E2CC /* Augment */,
 				9D592ED32C5C23BE00C4E2CC /* Products */,
+				9D592F082C5D3E5A00C4E2CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +80,7 @@
 		9D592ED42C5C23BE00C4E2CC /* Augment */ = {
 			isa = PBXGroup;
 			children = (
+				9D592F0B2C5D3E6F00C4E2CC /* CoreData */,
 				9D592EF82C5D1FCE00C4E2CC /* Scenes */,
 				9D592EF12C5D1F4C00C4E2CC /* Extensions */,
 				9D592EF02C5D1F4500C4E2CC /* Network */,
@@ -137,6 +146,23 @@
 				9D592F062C5D257200C4E2CC /* NewsPaperHomeViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9D592F082C5D3E5A00C4E2CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9D592F092C5D3E5A00C4E2CC /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D592F0B2C5D3E6F00C4E2CC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9D592F0C2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodeld */,
+				9D592F0F2C5D3FC000C4E2CC /* CoreDataValues.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,8 +242,10 @@
 				9D592ED62C5C23BE00C4E2CC /* AppDelegate.swift in Sources */,
 				9D592ED82C5C23BE00C4E2CC /* SceneDelegate.swift in Sources */,
 				9D592F042C5D24CD00C4E2CC /* UIImageView+Extension.swift in Sources */,
+				9D592F0E2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodeld in Sources */,
 				9D592EED2C5D1EF100C4E2CC /* NewsPaperHomeModel.swift in Sources */,
 				9D592EF52C5D1F7900C4E2CC /* NetworkErrors.swift in Sources */,
+				9D592F102C5D3FC000C4E2CC /* CoreDataValues.swift in Sources */,
 				9D592F022C5D22C500C4E2CC /* NewsPaperHomeViewModel.swift in Sources */,
 				9D592EFC2C5D205700C4E2CC /* NewsPaperHomeService.swift in Sources */,
 				9D592EFF2C5D210100C4E2CC /* NewsPaperHomeAPI.swift in Sources */,
@@ -433,6 +461,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9D592F0C2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9D592F0D2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodel */,
+			);
+			currentVersion = 9D592F0D2C5D3EAB00C4E2CC /* NewsPaperHome.xcdatamodel */;
+			name = NewsPaperHome.xcdatamodeld;
+			path = /Users/allan/Developer/swift/Augment/Augment/CoreData/NewsPaperHome.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9D592ECA2C5C23BE00C4E2CC /* Project object */;
 }
