@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9D592ED62C5C23BE00C4E2CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592ED52C5C23BE00C4E2CC /* AppDelegate.swift */; };
 		9D592ED82C5C23BE00C4E2CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592ED72C5C23BE00C4E2CC /* SceneDelegate.swift */; };
-		9D592EDA2C5C23BE00C4E2CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592ED92C5C23BE00C4E2CC /* ViewController.swift */; };
 		9D592EDF2C5C23C100C4E2CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D592EDE2C5C23C100C4E2CC /* Assets.xcassets */; };
 		9D592EE22C5C23C100C4E2CC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 9D592EE12C5C23C100C4E2CC /* Base */; };
 		9D592EED2C5D1EF100C4E2CC /* NewsPaperHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D592EEC2C5D1EF100C4E2CC /* NewsPaperHomeModel.swift */; };
@@ -29,7 +28,6 @@
 		9D592ED22C5C23BE00C4E2CC /* Augment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Augment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D592ED52C5C23BE00C4E2CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D592ED72C5C23BE00C4E2CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9D592ED92C5C23BE00C4E2CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9D592EDE2C5C23C100C4E2CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D592EE12C5C23C100C4E2CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D592EE32C5C23C100C4E2CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 				9D592EF02C5D1F4500C4E2CC /* Network */,
 				9D592ED52C5C23BE00C4E2CC /* AppDelegate.swift */,
 				9D592ED72C5C23BE00C4E2CC /* SceneDelegate.swift */,
-				9D592ED92C5C23BE00C4E2CC /* ViewController.swift */,
 				9D592EDE2C5C23C100C4E2CC /* Assets.xcassets */,
 				9D592EE02C5C23C100C4E2CC /* LaunchScreen.storyboard */,
 				9D592EE32C5C23C100C4E2CC /* Info.plist */,
@@ -217,7 +214,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D592EF72C5D1FA600C4E2CC /* URLSession+NetwrokSession.swift in Sources */,
-				9D592EDA2C5C23BE00C4E2CC /* ViewController.swift in Sources */,
 				9D592EF32C5D1F5E00C4E2CC /* NetworkSession.swift in Sources */,
 				9D592F072C5D257200C4E2CC /* NewsPaperHomeViewController.swift in Sources */,
 				9D592EFA2C5D201600C4E2CC /* NewsPaperHomeFactory.swift in Sources */,

@@ -14,6 +14,9 @@ final class NewsPaperHomeService: NewsPaperHomeServicing {
     }
     
     func getNewsPaperPlans(completionHandler: @escaping (Result<NewsPaperHomeModel, NetworkErrors>) -> Void) {
+        completionHandler(.success(.init(id: 1, name: "name")))
+        return
+        
         guard let apiUrl = URL(string: apiURLString) else {
             completionHandler(.failure(.invalidUrl))
             return

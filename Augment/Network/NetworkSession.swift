@@ -1,6 +1,5 @@
 import Foundation
 
 protocol NetworkSession {
-    func executeRequest(with url: URL,
-                        completionHandler: @escaping ((Data?, URLResponse?, Error?) -> Void))
+    func executeRequest(with url: URL, completionHandler: @escaping ((Data?, URLResponse?, Error?) -> Void))
 }

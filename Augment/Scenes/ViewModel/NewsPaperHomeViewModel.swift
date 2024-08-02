@@ -1,11 +1,16 @@
 import Foundation
 
+protocol NewsPaperHomeViewModelProtocol {
+    func loadNewsPaperHome()
+    var delegate: NewsPaperHomeViewModelDelegate? { get set }
+}
+
 protocol NewsPaperHomeViewModelDelegate: AnyObject {
     func newsPaperHomeDidLoad()
     func fetchFailed(withError errorInfo: (title: String, message: String))
 }
 
-class NewsPaperHomeViewModel {
+class NewsPaperHomeViewModel: NewsPaperHomeViewModelProtocol {
     // MARK: - Properties
     private let service: NewsPaperHomeServicing
     private(set) var newsPaperHome: NewsPaperHomeModel?
