@@ -1,5 +1,9 @@
 import UIKit
 
+protocol PriceDescriptionViewDelegate: AnyObject {
+    func didToggleCheckBox(for offerId: OfferID)
+}
+
 final class PriceDescriptionView: UIControl {
     private let priceLabel: UILabel = {
         let label = UILabel()
@@ -21,6 +25,28 @@ final class PriceDescriptionView: UIControl {
         return label
     }()
     
+    private lazy var checkboxButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let uncheckedImage = UIImage(systemName: "circle")
+        let checkedImage = UIImage(systemName: "checkmark.circle")
+        button.setImage(uncheckedImage, for: .normal)
+        button.setImage(checkedImage, for: .selected)
+        button.tintColor = .darkGray
+        button.addTarget(self, action: #selector(toggleCheckbox), for: .touchUpInside)
+        return button
+    }()
+    
+    var isChecked = false {
+        didSet {
+            checkboxButton.isSelected = isChecked
+        }
+    }
+    
+    weak var delegate: PriceDescriptionViewDelegate?
+    
+    let offerId: OfferID
+    
     private var price: String = "" {
         didSet {
             priceLabel.text = price
@@ -33,8 +59,9 @@ final class PriceDescriptionView: UIControl {
         }
     }
     
-    override init(frame: CGRect = .zero) {
-        super.init(frame: frame)
+    init(offerId: OfferID) {
+        self.offerId = offerId
+        super.init(frame: .zero)
         setupViewHierarchy()
         setupConstraints()
     }
@@ -52,6 +79,7 @@ private extension PriceDescriptionView {
     func setupViewHierarchy() {
         addSubview(priceLabel)
         addSubview(priceDescriptionLabel)
+        addSubview(checkboxButton)
     }
     
     func setupConstraints() {
@@ -62,7 +90,10 @@ private extension PriceDescriptionView {
             priceDescriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             priceDescriptionLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
             priceDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            priceDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            checkboxButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            checkboxButton.topAnchor.constraint(equalTo: priceDescriptionLabel.bottomAnchor, constant: 8),
+            checkboxButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            checkboxButton.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
     
@@ -72,5 +103,10 @@ private extension PriceDescriptionView {
         formatter.locale = Locale(identifier: "en_US")
         return formatter.string(from: NSNumber(value: value)) ?? ""
     }
-
+    
+    @objc
+    func toggleCheckbox() {
+        isChecked.toggle()
+        delegate?.didToggleCheckBox(for: offerId)
+    }
 }

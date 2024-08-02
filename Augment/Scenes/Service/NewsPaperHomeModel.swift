@@ -36,6 +36,11 @@ struct Subscription: Equatable, Decodable {
     }
 }
 
+enum OfferID {
+    case fisrtOffer
+    case secondOffer
+}
+
 struct Offers: Equatable, Decodable {
     let id0: Offer
     let id1: Offer

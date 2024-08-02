@@ -65,6 +65,9 @@ final class NewsPaperHomeViewController: UIViewController {
         return stackView
     }()
     
+    let firstPriceValue = PriceDescriptionView(offerId: .fisrtOffer)
+    let secondPriceValue = PriceDescriptionView(offerId: .secondOffer)
+    
     private lazy var benefitsExpandableView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -126,7 +129,7 @@ final class NewsPaperHomeViewController: UIViewController {
     private var isBenefitsExpanded: Bool = false {
         didSet {
             benefitsExpandedStackView.isHidden = !isBenefitsExpanded
-            benefitsExpandableImageView.image = isBenefitsExpanded ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.up")
+            benefitsExpandableImageView.image = isBenefitsExpanded ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")
         }
     }
     
@@ -242,13 +245,14 @@ extension NewsPaperHomeViewController: NewsPaperHomeViewModelDelegate {
         coverImageImageView.setImageUrl(with: model.record.subscription.coverImage)
         subscribeTitleLabel.text = model.record.subscription.subscribeTitle
         subscribeSubtitleLabel.text = model.record.subscription.subscribeSubtitle
-        let firstPriceValue = PriceDescriptionView()
+        firstPriceValue.delegate = self
         firstPriceValue.setupPriceDescription(
             price: model.record.subscription.offers.id0.price,
             description: model.record.subscription.offers.id0.description
         )
         offersStackView.addArrangedSubview(firstPriceValue)
-        let secondPriceValue = PriceDescriptionView()
+        
+        secondPriceValue.delegate = self
         secondPriceValue.setupPriceDescription(
             price: model.record.subscription.offers.id1.price,
             description: model.record.subscription.offers.id1.description
@@ -263,6 +267,14 @@ extension NewsPaperHomeViewController: NewsPaperHomeViewModelDelegate {
         showAlert(with: errorInfo)
     }
 }
+
+extension NewsPaperHomeViewController: PriceDescriptionViewDelegate {
+    func didToggleCheckBox(for offerId: OfferID) {
+        firstPriceValue.isChecked = firstPriceValue.offerId == offerId
+        secondPriceValue.isChecked = secondPriceValue.offerId == offerId
+    }
+}
+
 // MARK: Constraints
 private extension NewsPaperHomeViewController {
     func scrollViewConstraints() {
