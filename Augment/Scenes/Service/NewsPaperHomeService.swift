@@ -16,26 +16,6 @@ final class NewsPaperHomeService: NewsPaperHomeServicing {
     }
     
     func getNewsPaperPlans(completionHandler: @escaping (Result<NewsPaperHomeModel, NetworkErrors>) -> Void) {
-        do {
-            guard let decodedMock = try self.getModel(from: NewsPaperHomeAPI.modelMock!) else {
-                completionHandler(.failure(.jsonDecoding(message: "Could not decode JSON")))
-                return
-            }
-            DispatchQueue.main.async {
-                completionHandler(.success(decodedMock))
-            }
-        } catch let error {
-            DispatchQueue.main.async {
-                completionHandler(.failure(.jsonDecoding(message: error.localizedDescription)))
-            }
-        }
-        return
-        
-        
-        
-        
-        
-        
         guard let apiUrl = URL(string: apiURLString) else {
             completionHandler(.failure(.invalidUrl))
             return
@@ -69,6 +49,22 @@ final class NewsPaperHomeService: NewsPaperHomeServicing {
                 }
             }
         }
+        
+        /// Used the code below to mock when the server was unavailable
+//        do {
+//            guard let decodedMock = try self.getModel(from: NewsPaperHomeAPI.modelMock!) else {
+//                completionHandler(.failure(.jsonDecoding(message: "Could not decode JSON")))
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                completionHandler(.success(decodedMock))
+//            }
+//        } catch let error {
+//            DispatchQueue.main.async {
+//                completionHandler(.failure(.jsonDecoding(message: error.localizedDescription)))
+//            }
+//        }
+//        return
     }
 }
 
